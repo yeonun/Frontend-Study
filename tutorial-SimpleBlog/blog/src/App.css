@@ -28,6 +28,13 @@ body {
   padding-right: 20px;
 }
 
+.modal{
+  background: rgb(201, 201, 201);
+  margin : 20px;
+  padding : 20px;
+
+}
+
 .App-logo {
   height: 40vmin;
   pointer-events: none;
