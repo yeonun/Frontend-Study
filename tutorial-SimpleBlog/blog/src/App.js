@@ -2,15 +2,24 @@
 
 import logo from "./logo.svg";
 import "./App.css";
-import React, {useState} from 'react';
+import React, { useState } from "react";
 
 function App() {
   let posts = "시작하기전 프로젝트 세팅하기";
-  let [title, setTitle] = useState(['시작하기전 프로젝트 세팅하기','state에 데이터를 저장하기', '저녁 메뉴를 고르는 방법']);
+  let [title, setTitle] = useState([
+    "시작하기전 프로젝트 세팅하기",
+    "state에 데이터를 저장하기",
+    "저녁 메뉴를 고르는 방법",
+  ]);
+  let [date, setDate] = useState(["4월 27일", "4월 28일", "4월 29일"]);
+  let [inputData, setInputData] = useState('');
+
   let postTitleStyle = { color: " black ", fontSize: "25px" };
 
+  let[clickTitleNum,setClickTitleNum] = useState(0);
+
   let [modalVisible, setModalVisible] = useState(false);
-  function modalClick(){
+  function modalClick() {
     setModalVisible(!modalVisible);
   }
 
@@ -29,7 +38,7 @@ function App() {
   }
 
   function likeUpClick() {
-    setLikey(likey+1);
+    setLikey(likey + 1);
   }
 
   return (
@@ -37,45 +46,36 @@ function App() {
       <div className="Black-nav">
         <div> yeonun의 연습장</div>
       </div>
-      <button onClick = { setTitleClick }> 제목을 바꾸는 버튼 </button>
-      <button onClick = { arrangeClick }> 글 정렬 하는 버튼 </button>
-      <div className="postList" >
-        <h3 style = { postTitleStyle }> { title[0] }
-        <span onClick={ likeUpClick }> 👍 </span> {likey}
-        </h3>
-        <p> 4월 27일 작성 </p>
-        <hr/>
-      </div>
-      <div className="postList">
-        <h3 style = { postTitleStyle }> { title[1] } </h3>
-        <p> 4월 28일 작성 </p>
-        <hr/>
-      </div>
-      <div className="postList">
-        <h3 style = { postTitleStyle } onClick={modalClick}> { title[2] } </h3>
-        <p> 4월 29일 작성 </p>
-        <hr/>
-      </div>
-      <div>
-        {
-          modalVisible === true
-          ? <Modal />
-          : null
-        }
-      </div>
+      <button onClick={setTitleClick}> 제목을 바꾸는 버튼 </button>
+      <button onClick={arrangeClick}> 글 정렬 하는 버튼 </button>
+
+      {title.map(function (titleNo, i) {
+        return (
+          <div className="postList">
+            <h3 style={postTitleStyle} onClick={ ()=>{setClickTitleNum(i)}}>
+              {titleNo}
+              <span onClick={likeUpClick} > 👍 </span> {likey}
+            </h3>
+            <p> {date[i]} </p>
+            <hr />
+          </div>
+        );
+      })}
+      <input ></input>
+      <button onClick={modalClick} > 모달 열기 </button>
+      <div>{modalVisible === true ? <Modal title={title} clickTitleNum={clickTitleNum} date={date}/> : null}</div>
     </div>
   );
 }
 
-function Modal(){
-  return(
+function Modal(props) {
+  return (
     <div className="modal">
-      <h2> 제목 </h2>
-      <p> 날짜 </p>
+      <h2> {props.title[props.clickTitleNum]} </h2>
+      <p> {props.date[props.clickTitleNum]} </p>
       <p> 상세 내용 </p>
     </div>
-
-  )
+  );
 }
 
 export default App;
