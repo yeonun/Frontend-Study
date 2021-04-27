@@ -51,17 +51,27 @@ function App() {
 
       {title.map(function (titleNo, i) {
         return (
-          <div className="postList">
+          <div className="Post-List" key={i}>
             <h3 style={postTitleStyle} onClick={ ()=>{setClickTitleNum(i)}}>
               {titleNo}
               <span onClick={likeUpClick} > 👍 </span> {likey}
             </h3>
-            <p> {date[i]} </p>
+            <p> 4월 29일 </p>
             <hr />
           </div>
         );
       })}
-      <input ></input>
+      {/* {inputData}<input onChange={(e)=>{ setInputData(e.target.value) }} ></input> */}
+
+      <div className="Write-Area">
+        <input onChange={(e)=>{ setInputData(e.target.value) }}></input>
+        <button onClick={ ()=>{
+          let addTitle = [...title];
+          addTitle.unshift(inputData);
+          setTitle(addTitle)
+        }}> 저장 </button>
+      </div>
+
       <button onClick={modalClick} > 모달 열기 </button>
       <div>{modalVisible === true ? <Modal title={title} clickTitleNum={clickTitleNum} date={date}/> : null}</div>
     </div>
@@ -72,7 +82,7 @@ function Modal(props) {
   return (
     <div className="modal">
       <h2> {props.title[props.clickTitleNum]} </h2>
-      <p> {props.date[props.clickTitleNum]} </p>
+      <p> 작성일 </p>
       <p> 상세 내용 </p>
     </div>
   );
