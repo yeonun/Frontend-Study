@@ -68,6 +68,7 @@ function App() {
         <button onClick={ ()=>{
           let addTitle = [...title];
           addTitle.unshift(inputData);
+          //아래에 넣고싶으면 push, 위에 넣고싶으면 unshift
           setTitle(addTitle)
         }}> 저장 </button>
       </div>
