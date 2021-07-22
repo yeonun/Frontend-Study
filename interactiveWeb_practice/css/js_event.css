@@ -1,0 +1,22 @@
+img {
+    max-width: 100%;
+    height: auto;
+}
+.characters {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    background: #fff000;
+}
+.ilbuni {
+    width: 100px;
+    cursor: pointer;
+}
+.characters .ilbuni {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+.special {
+    border: 3px dashed red;
+}
