@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3D practice</title>
+    <style>
+        .world{
+            display:flex;
+            align-items: center;
+            justify-content: center;
+            width: 100vw;
+            height: 50vh;
+            background: gainsboro;
+
+            perspective: 500px;
+        }
+        .card{
+            position: relative;
+            margin: 1em;
+            width: 150px;
+            height: 200px;
+
+            transition: 1s;
+
+            transform: rotateY(0deg);
+            /* IE는 preserved-3d가 적용이 안됨, 컨네이너 element를 없애고 직접 카드 앞뒷면을 회전시켜야 함*/
+            /*transform-style: preserve-3d;*/
+
+            /* transform-origin으로 회전 축을 바꿀 수 있음*/
+            /* transform-origin: left; */
+        }
+        .card-side{
+
+            margin: -100px 0 0 -75px;
+            width: 150px;
+            height: 200px;
+
+            position: absolute;
+            left: 50%;
+            top: 50%;
+
+            transition: 1s;
+            transform: rotateY(0deg);
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 0.5em;
+            font-size: 1rem;
+            -webkit-backface-visibility: hidden;
+            /* 표준속성은 접두어 맨 아래에 넣어주면 좋음 */
+            backface-visibility: hidden;
+        }
+        .card-side-front{
+            z-index: 1;
+            background: rgb(22, 247, 255);
+        }
+        .card-side-back{
+            background: rgb(255, 27, 244);
+            transform: rotateY(180deg);
+        }
+        .world:hover .card-side-front{
+            transform: rotateY(180deg);
+        }
+        .world:hover .card-side-back{
+            transform: rotateY(360deg);
+        }
+
+    </style>
+</head>
+<body> 
+    <h1>3D</h1>
+    <div class="world">
+        <div class="card-side card-side-front">앞면</div>
+        <div class="card-side card-side-back">뒷면</div>
+    </div>
+</body>
+</html>
