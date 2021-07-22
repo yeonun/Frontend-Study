@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        @keyframes sample1{
+            0%{
+                transform: translate(0,0);
+            }
+            60%{
+                transform: translate(150px,0);
+            }
+            100%{
+                transform: translate(300px,300px);
+            }
+        }
+        @keyframes sample2{
+            100%{
+                transform: translate(0,0);
+            }
+            50%{
+                transform: translate(100px,0);
+            }
+            0%{
+                transform: translate(300px,300px);
+            }
+        }
+        .box1{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100px;
+            height: 100px;
+            border: 2px solid black;
+            background: rgb(43, 220, 226);
+            animation: sample1 2s infinite alternate;
+        }
+        .box1:hover{
+            animation-play-state: paused;
+        }
+        .box2{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100px;
+            height: 100px;
+            border: 2px solid black;
+            background: rgb(253, 109, 253);
+            animation: sample2 2s infinite alternate;
+        }
+        .box2:hover{
+            animation-play-state: paused;
+        }
+
+    </style>
+</head>
+<body>
+    <h1>Animation</h1>
+    <div class="box1">BOX</div>
+    <div class="box2">BOX</div>
+    
+</body>
+</html>
